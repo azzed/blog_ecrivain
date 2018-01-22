@@ -5,18 +5,36 @@
  * Date: 11/01/2018
  * Time: 12:08
  */
-require 'Connexion.php';
-require __DIR__.'/../Entity/Article.php';
+require_once 'Connexion.php';
+require_once __DIR__.'/../Entity/Article.php';
+require_once __DIR__.'/../Entity/Commentaire.php';
 class CommentManager
 {
+
     public function __construct()
     {
         $this->connexion = new Connexion();
     }
-    public function addComment($postId,$comment,$author)
+    public function addComment($postId,$comment,$author='azz')
     {
-        $comments = $this->connexion->prepare('INSERT INTO comment(post_id, author, comment, comment_date) VALUES(?, ?, ?, NOW())');
-        $affectedLines = $comments->execute(array($postId, $author, $comment));
-        return $affectedLines;
+        $post_comment = [];
+        $req = $this->connexion->connect()->prepare('INSERT INTO comment(post_id, comment,author, dateComent) VALUES(:post_id, :comment,:author, NOW())');
+        $req->bindValue(':author', $author);
+        $req->bindValue(':post_id', $postId);
+        $req->bindValue(':comment', $comment);
+        $affectedLines = $req->execute();
+        foreach ($affectedLines as $commentaire)
+        {
+            $post_comment = new Commentaire($commentaire);
+        }
+        return $post_comment;
+    }
+    public  function findCommentById($postId)
+    {
+        $post = [];
+        $req = $this->connexion->connect()->query('SELECT * FROM comment WHERE post_id = '.$postId);
+        $comments = $req->fetchAll();
+
+        return $comments;
     }
 }
