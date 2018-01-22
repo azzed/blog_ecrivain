@@ -17,24 +17,25 @@ class CommentManager
     }
     public function addComment($postId,$comment,$author='azz')
     {
-        $post_comment = [];
+
         $req = $this->connexion->connect()->prepare('INSERT INTO comment(post_id, comment,author, dateComent) VALUES(:post_id, :comment,:author, NOW())');
         $req->bindValue(':author', $author);
         $req->bindValue(':post_id', $postId);
         $req->bindValue(':comment', $comment);
         $affectedLines = $req->execute();
-        foreach ($affectedLines as $commentaire)
+
+
+        return $affectedLines;
+    }
+    public  function findCommentById($postId)
+    {
+        $post_comment = [];
+        $req = $this->connexion->connect()->query('SELECT * FROM comment WHERE post_id = '.$postId);
+        $comments = $req->fetchAll();
+        foreach ($comments as $commentaire)
         {
             $post_comment = new Commentaire($commentaire);
         }
         return $post_comment;
-    }
-    public  function findCommentById($postId)
-    {
-        $post = [];
-        $req = $this->connexion->connect()->query('SELECT * FROM comment WHERE post_id = '.$postId);
-        $comments = $req->fetchAll();
-
-        return $comments;
     }
 }
