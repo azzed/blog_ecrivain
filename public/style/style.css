@@ -1,0 +1,75 @@
+
+body {
+    width: 100%;
+    font-family: 'Lora', 'Times New Roman', serif;
+    font-size: 1.0em;
+}
+html {
+    height: 100%;
+    width: 100%;
+}
+
+
+.titre{
+    font-size: 1.0em;
+}
+
+hr.small {
+    max-width: 200px;
+    margin: 10px auto;
+    border-width: 4px;
+    border-color: white;
+}
+.intro-header{
+    background: url(http://localhost/projet4/public/images/Alaska.jpg ) bottom no-repeat;
+    padding: 100px 0 50px;
+    color: white;
+}
+
+.content{
+    font-size: 1.0em;
+}
+.nav-link{
+    margin-left: 50%;
+}
+.commentaire{
+    margin-top: 10px;
+}
+
+/* Administration */
+.admin-header{
+    background: url(http://localhost/projet4/public/images/bg.jpg ) bottom no-repeat;
+    background-size: 100% 125%;
+    padding: 100px 0 50px;
+    color: white;
+    margin-bottom: 50px;
+
+}
+.dashboard{
+    display: flex;
+    width: 100%;
+
+}
+
+#commentaire{
+    border: solid 2px #dedefa;
+    background-color: silver;
+    width: 100%;
+}
+#articles{
+    border: solid 2px #dedefa;
+    background-color: antiquewhite;
+    width: 100%;
+
+}
+.modfication{
+    margin-top: 10px;
+    margin-left: 50%;
+}
+i{
+    display: inline;
+}
+.supprimer{
+    margin-top: 10px;
+    margin-left: 50%;
+}
