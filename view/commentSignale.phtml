@@ -1,0 +1,22 @@
+<div id="commentaire">
+    <h3 class="text-center"> Gestion de commentaires </h3>
+    <hr>
+    <form action="" method="post">
+        <div>
+            <?php foreach ($commentsignaler as $signale): ?>
+                <p>
+                    <?php
+                    echo $signale->getAuthor() . ": ";
+                    echo $signale->getComment();
+                    ?>
+                    <input type="checkbox" name="delete[]" value= <?= $signale->getId(); ?>>
+                </p>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <input class="btn btn-danger text-center" type="submit" value="suppression"/>
+
+    </form>
+</div>
